@@ -1,9 +1,12 @@
+import java.util.LinkedList;
+import java.util.List;
 import java.util.PriorityQueue;
 
 public class PureHeuristicSearch  extends ASearch
 {
 	PriorityQueue<ASearchNode> open;
 	PriorityQueue<ASearchNode> closed;
+	LinkedList<ASearchNode> tempLinkedList;
 
 	@Override
 	public String getSolverName() 
@@ -23,6 +26,7 @@ public class PureHeuristicSearch  extends ASearch
 	{
 		open = new PriorityQueue<>();
 		closed = new PriorityQueue<>();
+		tempLinkedList = new LinkedList<>();
 	}
 
 	@Override
@@ -57,13 +61,22 @@ public class PureHeuristicSearch  extends ASearch
 	@Override
 	public void addToOpen (ASearchNode node)
 	{
-
+		while (node.getH() < open.peek().getH()){
+			tempLinkedList.add(open.poll());
+		}
+		open.add(node);
+		while (! tempLinkedList.isEmpty()){
+			open.add(tempLinkedList.remove());
+		}
 	}
 
 	@Override
 	public void addToClosed (ASearchNode node)
 	{
-
+		List<ASearchNode> neighbors = node.getNeighbors();
+		for (ASearchNode neighbor: neighbors) {
+			closed.add(neighbor);
+		}
 	}
 
 	@Override

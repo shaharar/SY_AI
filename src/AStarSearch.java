@@ -1,8 +1,13 @@
+import java.util.LinkedList;
+import java.util.List;
+import java.util.PriorityQueue;
 
 public class AStarSearch   extends ASearch
 {
-	// Define lists here ...
-	
+	PriorityQueue<ASearchNode> open;
+	PriorityQueue<ASearchNode> closed;
+	LinkedList<ASearchNode> tempLinkedList;
+
 	@Override
 	public String getSolverName() 
 	{
@@ -22,64 +27,72 @@ public class AStarSearch   extends ASearch
 	@Override
 	public void initLists() 
 	{
-		
+		open = new PriorityQueue<>();
+		closed = new PriorityQueue<>();
+		tempLinkedList = new LinkedList<>();
 	}
 
 	@Override
-	public ASearchNode getOpen
-	(
-		ASearchNode node
-	) 
+	public ASearchNode getOpen (ASearchNode node)
 	{
-		return null;
+		if(isOpen(node)){
+			return node;
+		}
+		else{
+			return null;
+		}
 	}
 
 	@Override
-	public boolean isOpen
-	(
-		ASearchNode node
-	) 
-	{
-		return false;
+	public boolean isOpen (ASearchNode node) {
+		if (open.contains(node)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	@Override
-	public boolean isClosed
-	(
-		ASearchNode node
-	) 
+	public boolean isClosed (ASearchNode node)
 	{
-		return false;
+		if (closed.contains(node)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
-	public void addToOpen
-	(
-		ASearchNode node
-	) 
+	public void addToOpen (ASearchNode node)
 	{
-
+		while (node.getF() < open.peek().getF()){
+			tempLinkedList.add(open.poll());
+		}
+		open.add(node);
+		while (! tempLinkedList.isEmpty()){
+			open.add(tempLinkedList.remove());
+		}
 	}
 
 	@Override
-	public void addToClosed
-	(
-		ASearchNode node
-	) 
+	public void addToClosed (ASearchNode node)
 	{
-		
+		List<ASearchNode> neighbors = node.getNeighbors();
+		for (ASearchNode neighbor: neighbors) {
+			closed.add(neighbor);
+		}
 	}
 
 	@Override
-	public int openSize() 
+	public int openSize()
 	{
-		return 0;
+		return open.size();
 	}
 
 	@Override
-	public ASearchNode getBest() 
+	public ASearchNode getBest()
 	{
-		return null;
+		return open.poll();
 	}
 
 }
