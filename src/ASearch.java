@@ -4,10 +4,7 @@ import java.util.List;
 
 abstract public class ASearch
 {	
-	public List<IProblemMove> solve
-	(
-		IProblem problem
-	) 
+	public List<IProblemMove> solve (IProblem problem)
 	{
 		IProblemState 		problemState	= problem.getProblemState();
 		ASearchNode			goal			= abstractSearch(problemState);

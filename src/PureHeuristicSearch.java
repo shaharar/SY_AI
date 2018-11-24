@@ -1,8 +1,10 @@
+import java.util.PriorityQueue;
 
 public class PureHeuristicSearch  extends ASearch
 {
-	// Define lists here ...
-	
+	PriorityQueue<ASearchNode> open;
+	PriorityQueue<ASearchNode> closed;
+
 	@Override
 	public String getSolverName() 
 	{
@@ -10,10 +12,7 @@ public class PureHeuristicSearch  extends ASearch
 	}
 
 	@Override
-	public ASearchNode createSearchRoot
-	(
-		IProblemState problemState
-	) 
+	public ASearchNode createSearchRoot (IProblemState problemState)
 	{
 		ASearchNode newNode = new HeuristicSearchNode(problemState);
 		return newNode;
@@ -22,52 +21,47 @@ public class PureHeuristicSearch  extends ASearch
 	@Override
 	public void initLists() 
 	{
-
+		open = new PriorityQueue<>();
+		closed = new PriorityQueue<>();
 	}
 
 	@Override
-	public ASearchNode getOpen
-	(
-		ASearchNode node
-	) 
-	{
-		return null;
+	public ASearchNode getOpen (ASearchNode node) {
+		if (isOpen(node)) {
+			return node;
+		} else {
+			return null;
+		}
 	}
 
 	@Override
-	public boolean isOpen
-	(
-		ASearchNode node
-	) 
-	{
-		return false;
+	public boolean isOpen (ASearchNode node) {
+		if (open.contains(node)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	@Override
-	public boolean isClosed
-	(
-		ASearchNode node
-	) 
+	public boolean isClosed (ASearchNode node)
 	{
-		return false;
+		if (closed.contains(node)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
-	
 
 	@Override
-	public void addToOpen
-	(
-		ASearchNode node
-	) 
+	public void addToOpen (ASearchNode node)
 	{
 
 	}
 
 	@Override
-	public void addToClosed
-	(
-		ASearchNode node
-	) 
+	public void addToClosed (ASearchNode node)
 	{
 
 	}
@@ -75,13 +69,13 @@ public class PureHeuristicSearch  extends ASearch
 	@Override
 	public int openSize() 
 	{
-		return 0;
+		return open.size();
 	}
 
 	@Override
 	public ASearchNode getBest() 
 	{
-		return null;
+		return open.poll();
 	}
 
 }
