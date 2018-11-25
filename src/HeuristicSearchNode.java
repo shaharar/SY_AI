@@ -52,4 +52,19 @@ public class HeuristicSearchNode extends BlindSearchNode
 		ASearchNode newNode = new HeuristicSearchNode(this, currentProblemState, g, _heuristic);
 		return newNode;
 	}
+
+	@Override
+	public boolean equals
+			(
+					Object obj
+			)
+	{
+		if (obj instanceof HeuristicSearchNode)
+		{
+			HeuristicSearchNode otherNode = (HeuristicSearchNode) obj;
+			if (_currentProblemState.equals(otherNode._currentProblemState))
+				return true;
+		}
+		return false;
+	}
 }

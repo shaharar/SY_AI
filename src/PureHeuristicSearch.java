@@ -71,9 +71,6 @@ public class PureHeuristicSearch  extends ASearch
 	@Override
 	public void addToOpen (ASearchNode node)
 	{
-		if(isOpen(node)){
-			open.remove(node);
-		}
 		open.add(node);
 	}
 
@@ -81,6 +78,10 @@ public class PureHeuristicSearch  extends ASearch
 	public void addToClosed (ASearchNode node)
 	{
 		closed.add(node);
+//		List<ASearchNode> neighbors = node.getNeighbors();
+//		for (ASearchNode neighbor: neighbors) {
+//			closed.add(neighbor);
+//		}
 	}
 
 	@Override
