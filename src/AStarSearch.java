@@ -75,16 +75,16 @@ public class AStarSearch   extends ASearch
 	@Override
 	public void addToOpen (ASearchNode node)
 	{
+        if(isOpen(node)){
+            open.remove(node);
+        }
 		open.add(node);
 	}
 
 	@Override
 	public void addToClosed (ASearchNode node)
 	{
-		List<ASearchNode> neighbors = node.getNeighbors();
-		for (ASearchNode neighbor: neighbors) {
-			closed.add(neighbor);
-		}
+        closed.add(node);
 	}
 
 	@Override

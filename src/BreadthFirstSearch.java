@@ -60,6 +60,9 @@ public class BreadthFirstSearch  extends ASearch
 	@Override
 	public void addToOpen (ASearchNode node)
 	{
+		if(isOpen(node)){
+			open.remove(node);
+		}
 		open.add(node);
 	}
 

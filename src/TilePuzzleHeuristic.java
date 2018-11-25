@@ -3,10 +3,7 @@ public class TilePuzzleHeuristic implements IHeuristic
 {
 
 	@Override
-	public double getHeuristic
-	(
-		IProblemState problemState
-	) 
+	public double getHeuristic (IProblemState problemState)
 	{
 		TilePuzzleState tps = (TilePuzzleState) problemState;
 		int dimensions = tps._tilePuzzle.length;
@@ -17,8 +14,8 @@ public class TilePuzzleHeuristic implements IHeuristic
 				int value = tps._tilePuzzle[row][column];
 				expectedValue++;
 				if (value != expectedValue && value != 0){
-					double verticalDist = (Math.abs(tps._zeroCol - getColGoalState(dimensions, value))) * tps._tilePuzzle[row][column];
-					double horizontalDist = (Math.abs(tps._zeroRow - getRowGoalState(dimensions, value))) * tps._tilePuzzle[row][column];
+					double verticalDist = (Math.abs(tps._zeroCol - getColGoalState(dimensions, value))) * value;
+					double horizontalDist = (Math.abs(tps._zeroRow - getRowGoalState(dimensions, value))) * value;
 					h = h + verticalDist + horizontalDist;
 				}
 			}
