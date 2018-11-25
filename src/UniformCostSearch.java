@@ -40,7 +40,16 @@ public class UniformCostSearch   extends ASearch
 	public ASearchNode getOpen (ASearchNode node)
 	{
 		if(isOpen(node)){
-			return node;
+		    PriorityQueue<ASearchNode> tempQueue = new PriorityQueue<>();
+		    ASearchNode nodeInOpen = null;
+		    while (!open.isEmpty()){
+		        if(open.peek().equals(node)){
+		            nodeInOpen = open.peek();
+                }
+                tempQueue.add(open.poll());
+            }
+            open = tempQueue;
+			return nodeInOpen;
 		}
 		else{
 			return null;
