@@ -1,13 +1,9 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class UniformCostSearch   extends ASearch
 {
 	PriorityQueue<ASearchNode> open;
-	PriorityQueue<ASearchNode> closed;
-	LinkedList<ASearchNode> tempLinkedList;
+	LinkedList<ASearchNode> closed;
 
 	@Override
 	public String getSolverName() 
@@ -25,9 +21,19 @@ public class UniformCostSearch   extends ASearch
 	@Override
 	public void initLists() 
 	{
-		open = new PriorityQueue<>();
-		closed = new PriorityQueue<>();
-		tempLinkedList = new LinkedList<>();
+		open = new PriorityQueue<>(new Comparator<ASearchNode>() {
+			@Override
+			public int compare(ASearchNode o1, ASearchNode o2) {
+				if (o1.getG() < o2.getG()){
+					return -1;
+				}
+				else if (o1.getG() == o2.getG()){
+					return 0;
+				}
+				return 1;
+			}
+		});
+		closed = new LinkedList<>();
 	}
 
 	@Override
@@ -63,13 +69,7 @@ public class UniformCostSearch   extends ASearch
 	@Override
 	public void addToOpen (ASearchNode node)
 	{
-		while (node.getG() < open.peek().getG()){
-			tempLinkedList.add(open.poll());
-		}
 		open.add(node);
-		while (! tempLinkedList.isEmpty()){
-			open.add(tempLinkedList.remove());
-		}
 	}
 
 	@Override
