@@ -1,7 +1,4 @@
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class PureHeuristicSearch  extends ASearch
 {
@@ -41,20 +38,45 @@ public class PureHeuristicSearch  extends ASearch
 
 	@Override
 	public ASearchNode getOpen (ASearchNode node) {
-		if (isOpen(node)) {
-			return node;
-		} else {
-			return null;
+/*		Iterator<ASearchNode> it = open.iterator();
+		ASearchNode nodeInOpen = null;
+		while (it.hasNext()){
+			nodeInOpen = it.next();
+			if(nodeInOpen.equals(node)){
+				return nodeInOpen;
+			}
 		}
+		return nodeInOpen;*/
+
+		PriorityQueue<ASearchNode> tempQueue = new PriorityQueue<>();
+		ASearchNode nodeInOpen = null;
+		while (!open.isEmpty()){
+			if(open.peek().equals(node)){
+				nodeInOpen = open.peek();
+			}
+			tempQueue.add(open.poll());
+		}
+		open = tempQueue;
+		return nodeInOpen;
 	}
 
 	@Override
 	public boolean isOpen (ASearchNode node) {
-		if (open.contains(node)) {
+		Iterator<ASearchNode> it = open.iterator();
+		ASearchNode nodeInOpen = null;
+		while (it.hasNext()){
+			nodeInOpen = it.next();
+			if(nodeInOpen.equals(node)){
+				return true;
+			}
+		}
+		return false;
+
+/*		if (open.contains(node)) {
 			return true;
 		} else {
 			return false;
-		}
+		}*/
 	}
 	
 	@Override
@@ -78,10 +100,6 @@ public class PureHeuristicSearch  extends ASearch
 	public void addToClosed (ASearchNode node)
 	{
 		closed.add(node);
-//		List<ASearchNode> neighbors = node.getNeighbors();
-//		for (ASearchNode neighbor: neighbors) {
-//			closed.add(neighbor);
-//		}
 	}
 
 	@Override

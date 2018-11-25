@@ -39,7 +39,16 @@ public class UniformCostSearch   extends ASearch
 	@Override
 	public ASearchNode getOpen (ASearchNode node)
 	{
-		if(isOpen(node)){
+/*		Iterator<ASearchNode> it = open.iterator();
+		ASearchNode nodeInOpen = null;
+		while (it.hasNext()){
+			nodeInOpen = it.next();
+			if(nodeInOpen.equals(node)){
+				return nodeInOpen;
+			}
+		}
+		return nodeInOpen;*/
+
 		    PriorityQueue<ASearchNode> tempQueue = new PriorityQueue<>();
 		    ASearchNode nodeInOpen = null;
 		    while (!open.isEmpty()){
@@ -50,19 +59,28 @@ public class UniformCostSearch   extends ASearch
             }
             open = tempQueue;
 			return nodeInOpen;
-		}
-		else{
-			return null;
-		}
+
+
 	}
 
 	@Override
 	public boolean isOpen (ASearchNode node) {
-		if (open.contains(node)) {
+
+		Iterator<ASearchNode> it = open.iterator();
+		ASearchNode nodeInOpen = null;
+		while (it.hasNext()){
+			nodeInOpen = it.next();
+			if(nodeInOpen.equals(node)){
+				return true;
+			}
+		}
+		return false;
+
+/*		if (open.contains(node)) {
 			return true;
 		} else {
 			return false;
-		}
+		}*/
 	}
 	
 	@Override

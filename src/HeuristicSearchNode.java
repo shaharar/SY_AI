@@ -53,7 +53,7 @@ public class HeuristicSearchNode extends BlindSearchNode
 		return newNode;
 	}
 
-	@Override
+/*	@Override
 	public boolean equals
 			(
 					Object obj
@@ -66,5 +66,5 @@ public class HeuristicSearchNode extends BlindSearchNode
 				return true;
 		}
 		return false;
-	}
+	}*/
 }
