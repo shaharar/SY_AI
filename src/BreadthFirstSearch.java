@@ -49,22 +49,15 @@ public class BreadthFirstSearch  extends ASearch
 	}
 
 	@Override
-	public boolean isOpen (ASearchNode node) {
-		if (open.contains(node)) {
-			return true;
-		} else {
-			return false;
-		}
+	public boolean isOpen (ASearchNode node)
+	{
+		return (open.contains(node));
 	}
 	
 	@Override
 	public boolean isClosed (ASearchNode node)
 	{
-		if (closed.contains(node)) {
-			return true;
-		} else {
-			return false;
-		}
+		return (closed.contains(node));
 	}
 
 	@Override

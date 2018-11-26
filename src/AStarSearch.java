@@ -48,17 +48,8 @@ public class AStarSearch   extends ASearch
 		else{
 			return null;
 		}
-/*        Iterator<ASearchNode> it = open.iterator();
-        ASearchNode nodeInOpen = null;
-        while (it.hasNext()){
-            nodeInOpen = it.next();
-            if(nodeInOpen.equals(node)){
-                return nodeInOpen;
-            }
-        }
-        return nodeInOpen;*/
 
-/*        PriorityQueue<ASearchNode> tempQueue = new PriorityQueue<>(new Comparator<ASearchNode>() {
+        /*PriorityQueue<ASearchNode> tempQueue = new PriorityQueue<>(new Comparator<ASearchNode>() {
 			@Override
 			public int compare(ASearchNode o1, ASearchNode o2) {
 				if (o1.getF() < o2.getF()){
@@ -83,31 +74,14 @@ public class AStarSearch   extends ASearch
 
 	@Override
 	public boolean isOpen (ASearchNode node) {
-/*        Iterator<ASearchNode> it = open.iterator();
-        ASearchNode nodeInOpen = null;
-        while (it.hasNext()){
-            nodeInOpen = it.next();
-            if(nodeInOpen.equals(node)){
-                return true;
-            }
-        }
-        return false;*/
 
-		if (open.contains(node)) {
-			return true;
-		} else {
-			return false;
-		}
+		return (open.contains(node));
 	}
 	
 	@Override
 	public boolean isClosed (ASearchNode node)
 	{
-		if (closed.contains(node)) {
-			return true;
-		} else {
-			return false;
-		}
+		return (closed.contains(node));
 	}
 
 	@Override
