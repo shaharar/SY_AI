@@ -13,12 +13,12 @@ public class TilePuzzleHeuristic implements IHeuristic
 		double h = 0;
 		int expectedValue = 0;
 		for (int row = 0; row < tps._tilePuzzle.length; row++){
-			for (int column = 0; column < tps._tilePuzzle[row].length; column++){
+			for (int column = 0; column < tps._tilePuzzle[0].length; column++){
 				int value = tps._tilePuzzle[row][column];
 				expectedValue++;
 				if (value != expectedValue && value != 0){
-					double verticalDist = (Math.abs(tps._zeroCol - ((value - 1) % dimensions))) * tps._tilePuzzle[row][column];
-					double horizontalDist = (Math.abs(tps._zeroRow - ((value - 1) / dimensions))) * tps._tilePuzzle[row][column];
+					double verticalDist = (Math.abs(column - ((value - 1) % dimensions))) * value;
+					double horizontalDist = (Math.abs(row - ((value - 1) / dimensions))) * value;
 					h = h + verticalDist + horizontalDist;
 				}
 			}

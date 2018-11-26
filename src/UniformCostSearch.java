@@ -3,7 +3,7 @@ import java.util.*;
 public class UniformCostSearch   extends ASearch
 {
 	PriorityQueue<ASearchNode> open;
-	LinkedList<ASearchNode> closed;
+	List<ASearchNode> closed;
 
 	@Override
 	public String getSolverName() 
@@ -33,12 +33,19 @@ public class UniformCostSearch   extends ASearch
 				return 1;
 			}
 		});
-		closed = new LinkedList<>();
+		closed = new ArrayList<>();
 	}
 
 	@Override
 	public ASearchNode getOpen (ASearchNode node)
 	{
+		if(open.contains(node)){
+			return node;
+		}
+		else{
+			return null;
+		}
+
 /*		Iterator<ASearchNode> it = open.iterator();
 		ASearchNode nodeInOpen = null;
 		while (it.hasNext()){
@@ -49,7 +56,7 @@ public class UniformCostSearch   extends ASearch
 		}
 		return nodeInOpen;*/
 
-		    PriorityQueue<ASearchNode> tempQueue = new PriorityQueue<>();
+		    /*PriorityQueue<ASearchNode> tempQueue = new PriorityQueue<>();
 		    ASearchNode nodeInOpen = null;
 		    while (!open.isEmpty()){
 		        if(open.peek().equals(node)){
@@ -58,7 +65,7 @@ public class UniformCostSearch   extends ASearch
                 tempQueue.add(open.poll());
             }
             open = tempQueue;
-			return nodeInOpen;
+			return nodeInOpen;*/
 
 
 	}
@@ -66,7 +73,7 @@ public class UniformCostSearch   extends ASearch
 	@Override
 	public boolean isOpen (ASearchNode node) {
 
-		Iterator<ASearchNode> it = open.iterator();
+/*		Iterator<ASearchNode> it = open.iterator();
 		ASearchNode nodeInOpen = null;
 		while (it.hasNext()){
 			nodeInOpen = it.next();
@@ -74,13 +81,13 @@ public class UniformCostSearch   extends ASearch
 				return true;
 			}
 		}
-		return false;
+		return false;*/
 
-/*		if (open.contains(node)) {
+		if (open.contains(node)) {
 			return true;
 		} else {
 			return false;
-		}*/
+		}
 	}
 	
 	@Override
@@ -103,10 +110,6 @@ public class UniformCostSearch   extends ASearch
 	public void addToClosed (ASearchNode node)
 	{
 		closed.add(node);
-//		List<ASearchNode> neighbors = node.getNeighbors();
-//		for (ASearchNode neighbor: neighbors) {
-//			closed.add(neighbor);
-//		}
 	}
 
 	@Override

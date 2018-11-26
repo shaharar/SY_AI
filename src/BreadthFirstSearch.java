@@ -30,7 +30,13 @@ public class BreadthFirstSearch  extends ASearch
 	@Override
 	public ASearchNode getOpen (ASearchNode node)
 	{
-		LinkedList<ASearchNode> tempQueue = new LinkedList<>();
+		if(open.contains(node)){
+			return node;
+		}
+		else{
+			return null;
+		}
+/*		LinkedList<ASearchNode> tempQueue = new LinkedList<>();
 		ASearchNode nodeInOpen = null;
 		while (!open.isEmpty()){
 			if(open.getFirst().equals(node)){
@@ -39,7 +45,7 @@ public class BreadthFirstSearch  extends ASearch
 			tempQueue.add(open.removeFirst());
 		}
 		open = tempQueue;
-		return nodeInOpen;
+		return nodeInOpen;*/
 	}
 
 	@Override
@@ -64,9 +70,6 @@ public class BreadthFirstSearch  extends ASearch
 	@Override
 	public void addToOpen (ASearchNode node)
 	{
-		if(isOpen(node)){
-			open.remove(node);
-		}
 		open.add(node);
 	}
 

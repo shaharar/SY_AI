@@ -3,7 +3,7 @@ import java.util.*;
 public class AStarSearch   extends ASearch
 {
 	PriorityQueue<ASearchNode> open;
-	LinkedList<ASearchNode> closed;
+	List<ASearchNode> closed;
 
 	@Override
 	public String getSolverName() 
@@ -27,7 +27,7 @@ public class AStarSearch   extends ASearch
 		open = new PriorityQueue<>(new Comparator<ASearchNode>() {
 			@Override
 			public int compare(ASearchNode o1, ASearchNode o2) {
-				if (o1.getF() < o2.getF()){
+				if (o1.getF() > o2.getF()){
 					return -1;
 				}
 				else if (o1.getF() == o2.getF()){
@@ -36,12 +36,18 @@ public class AStarSearch   extends ASearch
 				return 1;
 			}
 		});
-		closed = new LinkedList<>();
+		closed = new ArrayList<>();
 	}
 
 	@Override
 	public ASearchNode getOpen (ASearchNode node)
 	{
+		if(open.contains(node)){
+			return node;
+		}
+		else{
+			return null;
+		}
 /*        Iterator<ASearchNode> it = open.iterator();
         ASearchNode nodeInOpen = null;
         while (it.hasNext()){
@@ -52,7 +58,18 @@ public class AStarSearch   extends ASearch
         }
         return nodeInOpen;*/
 
-        PriorityQueue<ASearchNode> tempQueue = new PriorityQueue<>();
+/*        PriorityQueue<ASearchNode> tempQueue = new PriorityQueue<>(new Comparator<ASearchNode>() {
+			@Override
+			public int compare(ASearchNode o1, ASearchNode o2) {
+				if (o1.getF() < o2.getF()){
+					return -1;
+				}
+				else if (o1.getF() == o2.getF()){
+					return 0;
+				}
+				return 1;
+			}
+		});
         ASearchNode nodeInOpen = null;
         while (!open.isEmpty()){
             if(open.peek().equals(node)){
@@ -61,12 +78,12 @@ public class AStarSearch   extends ASearch
             tempQueue.add(open.poll());
         }
         open = tempQueue;
-        return nodeInOpen;
+        return nodeInOpen;*/
 	}
 
 	@Override
 	public boolean isOpen (ASearchNode node) {
-        Iterator<ASearchNode> it = open.iterator();
+/*        Iterator<ASearchNode> it = open.iterator();
         ASearchNode nodeInOpen = null;
         while (it.hasNext()){
             nodeInOpen = it.next();
@@ -74,13 +91,13 @@ public class AStarSearch   extends ASearch
                 return true;
             }
         }
-        return false;
+        return false;*/
 
-/*		if (open.contains(node)) {
+		if (open.contains(node)) {
 			return true;
 		} else {
 			return false;
-		}*/
+		}
 	}
 	
 	@Override
@@ -103,10 +120,6 @@ public class AStarSearch   extends ASearch
 	public void addToClosed (ASearchNode node)
 	{
 	    closed.add(node);
-//		List<ASearchNode> neighbors = node.getNeighbors();
-//		for (ASearchNode neighbor: neighbors) {
-//			closed.add(neighbor);
-//		}
 	}
 
 	@Override
