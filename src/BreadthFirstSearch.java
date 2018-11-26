@@ -30,22 +30,19 @@ public class BreadthFirstSearch  extends ASearch
 	@Override
 	public ASearchNode getOpen (ASearchNode node)
 	{
-		if(open.contains(node)){
+		for (ASearchNode Node: open) {
+			if(Node.equals(node)){
+				return Node;
+			}
+		}
+		return null;
+
+/*		if(open.contains(node)){
 			return node;
 		}
 		else{
 			return null;
-		}
-/*		LinkedList<ASearchNode> tempQueue = new LinkedList<>();
-		ASearchNode nodeInOpen = null;
-		while (!open.isEmpty()){
-			if(open.getFirst().equals(node)){
-				nodeInOpen = open.getFirst();
-			}
-			tempQueue.add(open.removeFirst());
-		}
-		open = tempQueue;
-		return nodeInOpen;*/
+		}*/
 	}
 
 	@Override

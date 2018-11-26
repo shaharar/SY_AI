@@ -39,35 +39,19 @@ public class UniformCostSearch   extends ASearch
 	@Override
 	public ASearchNode getOpen (ASearchNode node)
 	{
-		if(open.contains(node)){
+		for (ASearchNode Node: open) {
+			if(Node.equals(node)){
+				return Node;
+			}
+		}
+		return null;
+
+/*		if(open.contains(node)){
 			return node;
 		}
 		else{
 			return null;
-		}
-
-		/*PriorityQueue<ASearchNode> tempQueue = new PriorityQueue<>(new Comparator<ASearchNode>() {
-			@Override
-			public int compare(ASearchNode o1, ASearchNode o2) {
-				if (o1.getF() < o2.getF()){
-					return -1;
-				}
-				else if (o1.getF() == o2.getF()){
-					return 0;
-				}
-				return 1;
-			}
-		});
-		ASearchNode nodeInOpen = null;
-		while (!open.isEmpty()){
-			if(open.peek().equals(node)){
-				nodeInOpen = open.peek();
-			}
-			tempQueue.add(open.poll());
-		}
-		open = tempQueue;
-		return nodeInOpen;*/
-
+		}*/
 	}
 
 	@Override
