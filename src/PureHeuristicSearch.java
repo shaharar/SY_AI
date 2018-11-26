@@ -85,7 +85,7 @@ public class PureHeuristicSearch  extends ASearch
 		}
 	}
 
-	
+
 	@Override
 	public boolean isClosed (ASearchNode node)
 	{

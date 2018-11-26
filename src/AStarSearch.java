@@ -27,7 +27,7 @@ public class AStarSearch   extends ASearch
 		open = new PriorityQueue<>(new Comparator<ASearchNode>() {
 			@Override
 			public int compare(ASearchNode o1, ASearchNode o2) {
-				if (o1.getF() > o2.getF()){
+				if (o1.getF() < o2.getF()){
 					return -1;
 				}
 				else if (o1.getF() == o2.getF()){
