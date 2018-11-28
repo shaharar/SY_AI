@@ -48,13 +48,6 @@ public class AStarSearch   extends ASearch
 			}
 		}
 		return null;
-
-/*		if(open.contains(node)){
-			return node;
-		}
-		else{
-			return null;
-		}*/
 	}
 
 	@Override

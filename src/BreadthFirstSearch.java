@@ -1,6 +1,4 @@
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 public class BreadthFirstSearch  extends ASearch
 {
@@ -36,13 +34,6 @@ public class BreadthFirstSearch  extends ASearch
 			}
 		}
 		return null;
-
-/*		if(open.contains(node)){
-			return node;
-		}
-		else{
-			return null;
-		}*/
 	}
 
 	@Override

@@ -45,13 +45,6 @@ public class UniformCostSearch   extends ASearch
 			}
 		}
 		return null;
-
-/*		if(open.contains(node)){
-			return node;
-		}
-		else{
-			return null;
-		}*/
 	}
 
 	@Override
